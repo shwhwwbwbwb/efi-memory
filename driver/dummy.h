@@ -1,7 +1,3 @@
-// This header contains dummy functions to hook in runtime services table
-// We want to do this since then, the function pointers are going to be pointing
-// to somewhat similar memory location
-
 #include "general.h"
 
 static EFI_GET_TIME oGetTime;
@@ -51,12 +47,6 @@ EFIAPI EFI_STATUS HookedGetNextVariableName(UINTN* variableNameSize, CHAR16* var
 {
     return oGetNextVariableName(variableNameSize, variableName, vendorGuid);
 }
-
-/*static EFI_SET_VARIABLE oSetVariable;
-EFIAPI EFI_STATUS HookedSetVariable(CHAR16* variableName, EFI_GUID* vendorGuid, UINT32 attributes, UINTN dataSize, void* data) 
-{
-    return oSetVariable(variableName, vendorGuid, attributes, dataSize, data);
-}*/
 
 static EFI_GET_NEXT_HIGH_MONO_COUNT oGetNextHighMonotonicCount;
 EFIAPI EFI_STATUS HookedGetNextHighMonotonicCount(UINT32* highCount) 
